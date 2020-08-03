@@ -1,11 +1,15 @@
 extends Area
 
-onready var Joey = get_node("/root/Game/Paths/Path4/PathFollow/JoeyGinger/")
+onready var TB = get_node("/root/Game/Paths/Path4/PathFollow/TimothyBrah/")
 onready var Ryan = get_node("/root/Game/P1/")
-onready var TM1 = get_node("/root/Game/Paths/Path/PathFollow/Teammate1/")
-onready var FastMurr = get_node("/root/Game/Paths/Path2/PathFollow/FastMurr/")
-onready var TM3 = get_node("/root/Game/Paths/Path3/PathFollow/Teammate3/")
-onready var RockyB = get_node("/root/Game/Paths/Path6/PathFollow/RockyB/")
+onready var BK = get_node("/root/Game/Paths/Path/PathFollow/BobKenney/")
+onready var WM = get_node("/root/Game/Paths/Path2/PathFollow/WillyMiller/")
+onready var FL = get_node("/root/Game/Paths/Path3/PathFollow/FrancisLonger/")
+onready var KF = get_node("/root/Game/Paths/Path6/PathFollow/KaiserFernandez/")
+onready var MD = get_node("/root/Game/Paths/Path7/PathFollow/MattDeathroe/")
+onready var AN = get_node("/root/Game/Paths/Path5/PathFollow/AlanNett/")
+onready var SP = get_node("/root/Game/Paths/Path8/PathFollow/StephenPost/")
+
 
 onready var Clock1 = $FinishLabel
 
@@ -13,25 +17,23 @@ var milliseconds = 00
 var seconds = 00
 var minutes = 13
 
-var Joey_Line_Crossed = false
-var TM1_Line_Crossed = false
-var FastMurr_Line_Crossed = false
-var TM3_Line_Crossed = false
+var TB_Line_Crossed = false
+var BK_Line_Crossed = false
+var WM_Line_Crossed = false
+var FL_Line_Crossed = false
 var Ryan_Line_Crossed = false
-var Rocky_B_Crossed = false
+var KF_Line_Crossed = false
+var MD_Line_Crossed = false
+var AN_Line_Crossed = false
+var SP_Line_Crossed = false
 
-func _on_Timer_timeout():
-	milliseconds +=1
-	if milliseconds > 9:
-		seconds += 1
-		milliseconds = 0
-	if seconds > 59:
-		minutes += 1
-		seconds = 0
-	#milliseconds +=1
-	Clock1.time = (str(minutes)+":"+str(seconds)+"."+str(milliseconds))
-	if seconds < 10:
-		Clock1.time = (str(minutes)+":0"+str(seconds)+"."+str(milliseconds))
+
+
+#func _process(delta):
+
+#	Clock1.time = (str(minutes)+":"+str(seconds)+"."+str(milliseconds))
+#	if seconds < 10:
+#		Clock1.time = (str(minutes)+":0"+str(seconds)+"."+str(milliseconds))
 
 
 func _on_Area_body_entered(body):
@@ -39,58 +41,41 @@ func _on_Area_body_entered(body):
 	
 	
 
-	if overlaps_body(Joey) and Joey_Line_Crossed == false:
-		get_node("/root/Game/Area2/ItemList/").add_item("Joey Ginger")
-		get_node("/root/Game/Area2/ItemList/").add_item(Clock1.time) 
-		Joey_Line_Crossed = true
-	if overlaps_body(TM1) and TM1_Line_Crossed == false:
-		get_node("/root/Game/Area2/ItemList/").add_item("Tim Myers")
-		get_node("/root/Game/Area2/ItemList/").add_item(Clock1.time) 
-		TM1_Line_Crossed = true
-	if overlaps_body(FastMurr) and FastMurr_Line_Crossed == false:
-		get_node("/root/Game/Area2/ItemList/").add_item("Michael Murray")
-		get_node("/root/Game/Area2/ItemList/").add_item(Clock1.time) 
-		FastMurr_Line_Crossed = true
-	if overlaps_body(TM3) and TM3_Line_Crossed == false:
-		get_node("/root/Game/Area2/ItemList/").add_item("Anthony Manfrin")
-		get_node("/root/Game/Area2/ItemList/").add_item(Clock1.time) 
-		TM3_Line_Crossed = true
-	if overlaps_body(RockyB) and Rocky_B_Crossed == false:
-		get_node("/root/Game/Area2/ItemList/").add_item("Rocky B.")
-		get_node("/root/Game/Area2/ItemList/").add_item(Clock1.time) 
-		Rocky_B_Crossed = true
+	if overlaps_body(TB) and TB_Line_Crossed == false:
+		get_node("/root/Game/FinishArea/ItemList/").add_item("Timothy Brah")
+		get_node("/root/Game/FinishArea/ItemList/").add_item(Clock1.get_text())
+		TB_Line_Crossed = true
+	if overlaps_body(SP) and SP_Line_Crossed == false:
+		get_node("/root/Game/FinishArea/ItemList/").add_item("Stephen Post")
+		get_node("/root/Game/FinishArea/ItemList/").add_item(Clock1.get_text())
+		SP_Line_Crossed = true
+	if overlaps_body(AN) and AN_Line_Crossed == false:
+		get_node("/root/Game/FinishArea/ItemList/").add_item("Alan Nett")
+		get_node("/root/Game/FinishArea/ItemList/").add_item(Clock1.get_text())
+		AN_Line_Crossed = true
+	if overlaps_body(MD) and MD_Line_Crossed == false:
+		get_node("/root/Game/FinishArea/ItemList/").add_item("Matt Deathroe")
+		get_node("/root/Game/FinishArea/ItemList/").add_item(Clock1.get_text())
+		MD_Line_Crossed = true
+	if overlaps_body(BK) and BK_Line_Crossed == false:
+		get_node("/root/Game/FinishArea/ItemList/").add_item("Bob Kenney")
+		get_node("/root/Game/FinishArea/ItemList/").add_item(Clock1.get_text())
+		BK_Line_Crossed = true
+	if overlaps_body(WM) and WM_Line_Crossed == false:
+		get_node("/root/Game/FinishArea/ItemList/").add_item("Willy Miller")
+		get_node("/root/Game/FinishArea/ItemList/").add_item(Clock1.get_text())
+		WM_Line_Crossed = true
+	if overlaps_body(FL) and FL_Line_Crossed == false:
+		get_node("/root/Game/FinishArea/ItemList/").add_item("Francis Longer")
+		get_node("/root/Game/FinishArea/ItemList/").add_item(Clock1.get_text())
+		FL_Line_Crossed = true
+	if overlaps_body(KF) and KF_Line_Crossed == false:
+		get_node("/root/Game/FinishArea/ItemList/").add_item("Kaiser Fernandez")
+		get_node("/root/Game/FinishArea/ItemList/").add_item(Clock1.get_text())
+		KF_Line_Crossed = true
 	if overlaps_body(Ryan) and Ryan_Line_Crossed == false:
-		get_node("/root/Game/Area2/ItemList/").add_item("Ryan Craven") 
-		get_node("/root/Game/Area2/ItemList/").add_item(Clock1.time) 
-		get_node("/root/Game/Area2/ItemList/").visible = true
+		get_node("/root/Game/FinishArea/ItemList/").add_item("Evan Jogger") 
+		get_node("/root/Game/FinishArea/ItemList/").add_item(Clock1.get_text())
+		get_node("/root/Game/FinishArea/ItemList/").visible = true
 		Ryan_Line_Crossed = true
-	
-		
-
-
-
-
-
-	
-
-
-
-
-
-
-
-
-
-
-
-
-
-	
-
-
-
-	
-
-
-
 	

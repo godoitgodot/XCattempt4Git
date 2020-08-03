@@ -1,29 +1,12 @@
 extends Label
 
-var milliseconds = 00
-var seconds = 00
-var minutes = 00
 
-var time = (str(minutes)+":"+str(seconds)+"."+str(milliseconds))
 
-signal Clock
-
+var time = 0.0
 
 func _process(delta):
-
-	if milliseconds > 9:
-		seconds += 01
-		milliseconds = 0
-	if seconds > 59:
-		minutes += 1
-		seconds = 00
-
-	set_text(str(minutes)+":"+str(seconds)+"."+str(milliseconds))
-	emit_signal("Clock")
-
-	if seconds < 10:
-		set_text(str(minutes)+":0"+str(seconds)+"."+str(milliseconds))
-func _on_Timer_timeout():
-	milliseconds +=1
-	
-
+	time += delta
+	var minutes = int(time / 60) 
+	var seconds = int(time) % 60
+	var milliseconds = int(time * 1000) % 1000
+	set_text("%d:%02d.%03d" % [minutes, seconds, milliseconds])
